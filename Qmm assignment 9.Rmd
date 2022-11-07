@@ -1,0 +1,39 @@
+---
+title: "QMM Assignment 9"
+author: "Chaitanya"
+date: "2022-11-07"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+emax <- read_csv("emax.lp")
+View(emax)
+```
+
+#1. Express y1+ and y1-; y2+ and y2-; P using x1, x2, x3
+
+$$y_1^+ - y_1^- = 50 - 6 x1 - 4 x2 - 5 x3;$$
+
+$$y_2^+ - y_2^- = 75 - 8 x1 - 7 x2 - 5 x3;$$
+$$P = 20 x_1 + 15 x_2 + 25 x_3;$$
+<br>  
+
+#2. Express management objective function<br>  
+
+$$Max \hspace{.2cm}Z = 20 x_1 + 15 x_2 + 25 x_3 - 6 y_1^+ - 6 y_1^- - 3 y_2^-$$
+#3. Formulate and solve LP 
+```{r}
+library(lpSolveAPI)
+gp_sl <- read.lp("emax.lp")
+gp_sl
+```
+
+```{r}
+solve(gp_sl)
+get.objective(gp_sl)
+get.variables(gp_sl)
+```
